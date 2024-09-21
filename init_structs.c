@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:50:29 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/21 02:48:55 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/21 07:34:56 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,9 @@ void	init_philo(t_imputs s_imputs)
 		s_philo[count].id = count;
 		s_philo[count].fork_left = &s_imputs.forks[count];
 		s_philo[count].fork_right = &s_imputs.forks[(count + 1) % s_imputs.philos];  
-		s_philo[count].last_meal_time;  
-		s_philo[count].meals_count;  
 		s_philo[count].time_to_die = s_imputs.time_to_die;  
 		s_philo[count].time_to_eat = s_imputs.time_to_eat;  
-		s_philo[count].time_to_sleep; 
-		s_philo[count].start_time;  
+		s_philo[count].time_to_sleep
 	}
 }
 

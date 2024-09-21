@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:18:17 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/21 02:50:31 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/21 07:49:41 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ typedef struct s_philo
     int id;  // ID do filósofo
     pthread_mutex_t* fork_left;  // Garfo à esquerda
     pthread_mutex_t* fork_right;  // Garfo à direita
-    long last_meal_time;  // Momento da última refeição
-    int meals_count;  // Número de refeições realizadas
+    long last_meal_time;  // Momento da última refeição gettimeofday
+    int meals_count;  // Número de refeições realizadas  apenas se o quinto argumento existir
     int time_to_die;  // Tempo máximo sem comer
     int time_to_eat;  // Tempo necessário para comer
     int time_to_sleep;  // Tempo que o filósofo dorme
-    long start_time;  // Tempo de início da simulação
+    long start_time;  // Tempo de início da simulação gettimeofday
 }t_philo;
 
 
