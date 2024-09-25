@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:17:09 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/20 22:49:09 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:37:21 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ int	valid_imputs(char **argv, int argc)
 		return(1);
 	if(check_numeric_arguments(argv) != 0)
 		return(1);
-	if(max_philo(argv) != 0)
-		return(1);
-	if(min_time_die(argv) != 0)
-		return(1);
+	//if(max_philo(argv) != 0)
+		//return(1);
+	//if(min_time_die(argv) != 0)
+	//	return(1);
 	return(0);
 }
 
