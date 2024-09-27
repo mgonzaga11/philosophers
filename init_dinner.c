@@ -19,6 +19,7 @@ void init_dinner(t_imputs s_imputs, t_philo *s_philo)
 	while (i < s_imputs.philos)
 	{
 		pthread_create(&s_philo[i].thread, NULL, dinner, &s_philo[i]);
+		pthread_join(s_philo[i].thread, NULL);
 		i++;
 	}
 }
@@ -29,6 +30,6 @@ void	*dinner(void *p_param)
 	t_philo *s_philo;
 	
 	s_philo = (t_philo *)p_param;
-		printf("philo %i is eating", s_philo->number_philo);
+		printf("philo %i is eating\n", s_philo->number_philo);
 	return NULL;
 }

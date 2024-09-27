@@ -22,7 +22,7 @@ void	convert_imputs(char **argv, t_imputs s_imputs)
 	s_imputs.time_to_eat = ft_atoi(argv[3]);
 	s_imputs.time_to_sleep = ft_atoi(argv[4]);
 	//s_imputs.times_must_eat = ft_atoi(argv[5]);
-	//init_mutex(s_imputs.forks, s_imputs);
+	init_mutex(s_imputs.forks, s_imputs);
 }
 
 int  init_philo(t_imputs s_imputs, t_philo *s_philo)
