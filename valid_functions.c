@@ -6,12 +6,11 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:17:09 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/27 13:55:09 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/29 05:30:18 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdlib.h>
 
 int	philo_isalpha(int c)
 {
@@ -21,18 +20,17 @@ int	philo_isalpha(int c)
 		return (0);
 }
 
-int check_arguments_number(int argc)
+int	check_arguments_number(int argc)
 {
-	if(argc < 5 || argc > 6)
+	if (argc < 5 || argc > 6)
 	{
 		write(1, "Invalid arguments number", 24);
-		return(1);
+		return (1);
 	}
-	return(0);
-	
+	return (0);
 }
 
-int check_numeric_arguments(char **argv)
+int	check_numeric_arguments(char **argv)
 {
 	int	count;
 	int	i;
@@ -54,7 +52,7 @@ int check_numeric_arguments(char **argv)
 		}
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
 int	max_philo(char	**argv)
@@ -91,10 +89,10 @@ int	valid_imputs(char **argv, int argc)
 		return(1);
 	if(check_numeric_arguments(argv) != 0)
 		return(1);
-	//if(max_philo(argv) != 0)
-		//return(1);
-	//if(min_time_die(argv) != 0)
-	//	return(1);
+	if(max_philo(argv) != 0)
+		return(1);
+	if(min_time_die(argv) != 0)
+		return(1);
 	return(0);
 }
 

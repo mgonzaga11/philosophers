@@ -6,42 +6,57 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 13:59:08 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/27 19:26:10 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/29 06:14:34 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
- 
-void philo_eat(t_philo *s_philo)
+
+int	philo_eat(t_philo *s_philo)
 {
-	if(s_philo->number_philo % 2 == 0)
+	if (s_philo->number_philo % 2 == 0)
 	{
-		pthread_mutex_lock(s_philo->fork_left);
-		printf("philo %i pegou o garfo esquerdo\n", s_philo->number_philo);
 		pthread_mutex_lock(s_philo->fork_right);
-		printf("philo %i pegou o direito\n", s_philo->number_philo);
-		printf("esta comendo\n");
+		global_print(get_actual_time(), s_philo, "has taken a fork");
+		pthread_mutex_lock(s_philo->fork_left);
+		global_print(get_actual_time(), s_philo, "has taken a fork");
+		global_print(get_actual_time(), s_philo, "is eating");
+		s_philo->last_meal_time = get_actual_time();
 		usleep(s_philo->time_to_eat * 1000);
 		pthread_mutex_unlock(s_philo->fork_left);
 		pthread_mutex_unlock(s_philo->fork_right);
-		printf("parou de comer\n");
 	}
-	else if(s_philo->number_philo % 2 != 0)
+	else if (s_philo->number_philo % 2 != 0)
 	{
-		pthread_mutex_lock(s_philo->fork_right);
-		printf("philo %i pegou o direito\n", s_philo->number_philo);
 		pthread_mutex_lock(s_philo->fork_left);
-		printf("philo %i pegou o garfo esquerdo\n", s_philo->number_philo);
-		printf("esta comendo\n");
+		global_print(get_actual_time(), s_philo, "has taken a fork");
+		pthread_mutex_lock(s_philo->fork_right);
+		global_print(get_actual_time(), s_philo, "has taken a fork");
+		global_print(get_actual_time(), s_philo, "is eating");
+		s_philo->last_meal_time = get_actual_time();
 		usleep(s_philo->time_to_eat * 1000);
-		pthread_mutex_unlock(s_philo->fork_left);
 		pthread_mutex_unlock(s_philo->fork_right);
-		printf("parou de comer\n");
+		pthread_mutex_unlock(s_philo->fork_left);
 	}
+	return (1);
 }
 
 void	sleeping(t_philo *s_philo)
 {
 	global_print(get_actual_time(), s_philo, "is sleeping");
-	usleep(philo->table->time_to_sleep * 1000);
+	usleep(s_philo->time_to_sleep * 1000);
+}
+
+void	thinking(t_philo *s_philo)
+{
+	global_print(get_actual_time(), s_philo, "is thinking");
+}
+
+void	global_print(long time, t_philo *s_philo, char *action)
+{
+	pthread_mutex_lock(&s_philo->s_data->died_mutex);
+	if (s_philo->s_data->philo_died == 0)
+		printf("%9ld %d %s\n", time - s_philo->start_time,
+			s_philo->number_philo, action);
+	pthread_mutex_unlock(&s_philo->s_data->died_mutex);
 }

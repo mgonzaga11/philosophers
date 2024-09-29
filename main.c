@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 15:34:47 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/27 16:18:57 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/29 06:21:54 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "philo.h"
 
 
-int	ft_atoi(const char *str)
+int	ph_atoi(const char *str)
 {
 	int	sign;
 	int	result;
@@ -42,22 +42,26 @@ int	ft_atoi(const char *str)
 	return (sign * result);
 }
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data	s_data;
+	t_data		s_data;
 	t_philo		*s_philo;
-	int count = 0;
 
-	if(valid_imputs(argv, argc) == 0)
+	if (valid_imputs(argv, argc) == 0)
 	{
 		s_data = convert_inputs(argv, argc);
-		s_philo = init_philo(s_data); 
-			if(s_philo != NULL)
+		s_data.start_time = get_actual_time();
+		s_philo = init_philo(&s_data);
+		if (s_philo != NULL)
+		{
+			if (s_data.philos > 1)
 				init_dinner(s_data, s_philo);
 			else
-				return(printf("deu errado"));
+				printf("so tem 1 philo");
+		}
 	}
 	else
-		return(printf("nao validou"));
+		return (0);
+	finish_dinner(s_philo, &s_data, s_data.philos);
+	return (0);
 }
