@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:35:22 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/29 06:02:13 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:00:52 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*dinner(void *p_param)
 
 	i = 0;
 	s_philo = (t_philo *)p_param;
-	while (s_philo->s_data->philo_died == 0 )
+	while (1)
 	{
 		if (s_philo->s_data->times_must_eat != 0
 			&& i == s_philo->s_data->times_must_eat)

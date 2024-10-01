@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:18:17 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/29 06:13:14 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:36:28 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data
     long start_time;
     int philo_died;
     pthread_mutex_t died_mutex;
+    pthread_mutex_t print_mutex;
 }	t_data;
 
 typedef struct s_philo

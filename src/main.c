@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 15:34:47 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/29 06:21:54 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:00:06 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 			if (s_data.philos > 1)
 				init_dinner(s_data, s_philo);
 			else
-				printf("so tem 1 philo");
+				printf("so tem 1 philo, tem que fazer");
 		}
 	}
 	else

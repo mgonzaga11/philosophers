@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 13:59:08 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/29 06:14:34 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:08:04 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,11 @@ void	global_print(long time, t_philo *s_philo, char *action)
 {
 	pthread_mutex_lock(&s_philo->s_data->died_mutex);
 	if (s_philo->s_data->philo_died == 0)
+	{
+		pthread_mutex_lock(&s_philo->s_data->print_mutex);
 		printf("%9ld %d %s\n", time - s_philo->start_time,
-			s_philo->number_philo, action);
+				s_philo->number_philo, action);
+		pthread_mutex_unlock(&s_philo->s_data->print_mutex);
+	}
 	pthread_mutex_unlock(&s_philo->s_data->died_mutex);
 }

@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:50:29 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/09/29 06:20:46 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:59:22 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_data	convert_inputs(char **argv, int argc)
 	s_data.forks = init_mutex(s_data);
 	s_data.philo_died = 0;
 	pthread_mutex_init(&s_data.died_mutex, NULL);
+	pthread_mutex_init(&s_data.print_mutex, NULL);
+
 	return(s_data);
 }
 
@@ -39,7 +41,7 @@ t_philo  *init_philo(t_data *s_data)
 	
 	count = 0;
     s_philo = (t_philo *)malloc(s_data->philos * sizeof(t_philo));
-   if (!s_philo)
+   	if (!s_philo)
         return (NULL); 
 	while (count < s_data->philos)
 	{
