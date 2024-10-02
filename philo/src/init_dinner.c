@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:35:22 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/01 17:16:13 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:18:15 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ void	*dinner(void *p_param)
 
 	while (!check(s_philo->s_data))
 	{
-		if ( i >= s_philo->s_data->times_must_eat)
-			break ;
-		i = i + philo_eat(s_philo);
+		philo_eat(s_philo);
 		sleeping(s_philo);
 		thinking(s_philo);
 	}

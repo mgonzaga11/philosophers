@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:50:29 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/01 16:49:07 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:15:39 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_data	convert_inputs(char **argv, int argc)
 	s_data.philo_died = 0;
 	pthread_mutex_init(&s_data.died_mutex, NULL);
 	pthread_mutex_init(&s_data.print_mutex, NULL);
-	
-
+	pthread_mutex_init(&s_data.meals_count_mutex, NULL);
+		s_data.count_meals = 0;
 	return(s_data);
 }
 

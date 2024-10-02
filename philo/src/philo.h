@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:18:17 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/01 16:48:33 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:14:44 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_data
 	pthread_mutex_t *forks;
     long start_time;
     int philo_died;
+    int count_meals;
+    pthread_mutex_t meals_count_mutex;
     pthread_mutex_t died_mutex;
     pthread_mutex_t print_mutex;
 }	t_data;
@@ -64,7 +66,7 @@ void    *dinner(void *p_param);
 void    init_dinner(t_data s_data, t_philo *s_philo);
 int	    ph_atoi(const char *str);
 long    get_actual_time(void);
-int     philo_eat(t_philo *s_philo);
+void     philo_eat(t_philo *s_philo);
 void	sleeping(t_philo *s_philo);
 void	thinking(t_philo *s_philo);
 void    global_print(long time, t_philo *s_philo, char *action);
