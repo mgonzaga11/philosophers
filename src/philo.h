@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct s_data
 {
@@ -31,6 +32,7 @@ typedef struct s_data
     int philo_died;
     pthread_mutex_t died_mutex;
     pthread_mutex_t print_mutex;
+		struct s_philo *philo;
 }	t_data;
 
 typedef struct s_philo
@@ -48,7 +50,9 @@ typedef struct s_philo
     pthread_t thread;
     t_data *s_data;
     long start_time;
-    
+		int	num_meals;
+		pthread_mutex_t	mutex_num_meals;
+		pthread_mutex_t	mutex_last_meal;
 }t_philo;
 
 int philo_isalpha(int c);
@@ -69,6 +73,7 @@ void	sleeping(t_philo *s_philo);
 void	thinking(t_philo *s_philo);
 void    global_print(long time, t_philo *s_philo, char *action);
 int     check_philo_death(t_philo *s_philo);
+bool		check_death(t_philo *philo);
 void    finish_dinner(t_philo *s_philo, t_data *s_data, int total);
 
 #endif

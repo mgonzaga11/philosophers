@@ -21,7 +21,9 @@ int	philo_eat(t_philo *s_philo)
 		pthread_mutex_lock(s_philo->fork_left);
 		global_print(get_actual_time(), s_philo, "has taken a fork");
 		global_print(get_actual_time(), s_philo, "is eating");
+		pthread_mutex_lock(&s_philo->mutex_last_meal);
 		s_philo->last_meal_time = get_actual_time();
+		pthread_mutex_unlock(&s_philo->mutex_last_meal);
 		usleep(s_philo->time_to_eat * 1000);
 		pthread_mutex_unlock(s_philo->fork_left);
 		pthread_mutex_unlock(s_philo->fork_right);
@@ -33,7 +35,9 @@ int	philo_eat(t_philo *s_philo)
 		pthread_mutex_lock(s_philo->fork_right);
 		global_print(get_actual_time(), s_philo, "has taken a fork");
 		global_print(get_actual_time(), s_philo, "is eating");
+		pthread_mutex_lock(&s_philo->mutex_last_meal);
 		s_philo->last_meal_time = get_actual_time();
+		pthread_mutex_unlock(&s_philo->mutex_last_meal);
 		usleep(s_philo->time_to_eat * 1000);
 		pthread_mutex_unlock(s_philo->fork_right);
 		pthread_mutex_unlock(s_philo->fork_left);

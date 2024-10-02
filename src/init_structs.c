@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <pthread.h>
 
 
 
@@ -39,25 +40,27 @@ t_philo  *init_philo(t_data *s_data)
 	int	count;
 	t_philo *s_philo;
 	
-	count = 0;
+	count = -1;
     s_philo = (t_philo *)malloc(s_data->philos * sizeof(t_philo));
    	if (!s_philo)
         return (NULL); 
-	while (count < s_data->philos)
+	while (++count < s_data->philos)
 	{
 		s_philo[count].philos = s_data->philos;
 		s_philo[count].number_philo = count + 1;
 		s_philo[count].fork_left = &s_data->forks[count];
 		s_philo[count].fork_right = &s_data->forks[(count + 1) % s_data->philos];  
 		s_philo[count].s_data = s_data;
-		s_philo[count].last_meal_time = 0;
+		s_philo[count].last_meal_time = get_actual_time();
 		s_philo[count].thread = 0;
 		s_philo[count].time_to_die = s_data->time_to_die;
 		s_philo[count].time_to_eat = s_data->time_to_eat;
 		s_philo[count].time_to_sleep = s_data->time_to_sleep;
 		s_philo[count].times_must_eat = s_data->times_must_eat;
 		s_philo[count].start_time = s_data->start_time;
-		count++;
+		s_philo[count].meals_count = 0;
+		pthread_mutex_init(&s_philo[count].mutex_num_meals, NULL);
+		pthread_mutex_init(&s_philo[count].mutex_last_meal, NULL);
 	}
 	return(s_philo);
 }
@@ -76,6 +79,3 @@ pthread_mutex_t *init_mutex(t_data s_data)
 	}
 	return(forks);
 }
-
-       
-                                                                                                                                               

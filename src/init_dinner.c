@@ -33,20 +33,19 @@ void	init_dinner(t_data s_data, t_philo *s_philo)
 void	*dinner(void *p_param)
 {
 	t_philo	*s_philo;
-	int	i;
-
-	i = 0;
 	s_philo = (t_philo *)p_param;
-	while (1)
+
+	while (!check_death(s_philo))
 	{
 		if (s_philo->s_data->times_must_eat != 0
-			&& i == s_philo->s_data->times_must_eat)
+			&& s_philo->num_meals == s_philo->s_data->times_must_eat)
 			break ;
-		i = i + philo_eat(s_philo);
+		philo_eat(s_philo);
+		pthread_mutex_lock(&s_philo->mutex_num_meals);
+		s_philo->num_meals += 1;
+		pthread_mutex_unlock(&s_philo->mutex_num_meals);
 		sleeping(s_philo);
 		thinking(s_philo);
-		if (check_philo_death(s_philo) != 0)
-			break ;
 	}
 	return (NULL);
 }

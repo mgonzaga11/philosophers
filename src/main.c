@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 		s_data = convert_inputs(argv, argc);
 		s_data.start_time = get_actual_time();
 		s_philo = init_philo(&s_data);
+		s_philo->s_data->philo = s_philo;
 		if (s_philo != NULL)
 		{
 			if (s_data.philos > 1)
