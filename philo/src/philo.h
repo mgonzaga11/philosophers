@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:18:17 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/01 20:14:44 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:42:42 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ typedef struct s_philo
 	int times_must_eat;
     pthread_mutex_t* fork_left;
     pthread_mutex_t* fork_right; 
-    long last_meal_time; 
-    int meals_count;  
+    long last_meal_time;  
     pthread_t thread;
     t_data *s_data;
     long start_time;

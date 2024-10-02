@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 13:59:08 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/01 21:02:50 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:28:29 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	philo_eat(t_philo *s_philo)
 	if (s_philo->number_philo % 2 == 0)
 	{
 		pthread_mutex_lock(s_philo->fork_right);
-		global_print(get_actual_time(), s_philo, "has taken a fork");
 		pthread_mutex_lock(s_philo->fork_left);
 		global_print(get_actual_time(), s_philo, "has taken a fork");
-		global_print(get_actual_time(), s_philo, "is eating");
+		global_print(get_actual_time(), s_philo, "has taken a fork");
 		pthread_mutex_lock(&s_philo->last_meal_mutex);
 		s_philo->last_meal_time = get_actual_time();
 		pthread_mutex_unlock(&s_philo->last_meal_mutex);
+		global_print(get_actual_time(), s_philo, "is eating");
 		usleep(s_philo->s_data->time_to_eat * 1000);
 		pthread_mutex_unlock(s_philo->fork_left);
 		pthread_mutex_unlock(s_philo->fork_right);
@@ -31,18 +31,20 @@ void	philo_eat(t_philo *s_philo)
 	else if (s_philo->number_philo % 2 != 0)
 	{
 		pthread_mutex_lock(s_philo->fork_left);
-		global_print(get_actual_time(), s_philo, "has taken a fork");
 		pthread_mutex_lock(s_philo->fork_right);
 		global_print(get_actual_time(), s_philo, "has taken a fork");
-		global_print(get_actual_time(), s_philo, "is eating");
+		global_print(get_actual_time(), s_philo, "has taken a fork");
 		pthread_mutex_lock(&s_philo->last_meal_mutex);
 		s_philo->last_meal_time = get_actual_time();
 		pthread_mutex_unlock(&s_philo->last_meal_mutex);
+		global_print(get_actual_time(), s_philo, "is eating");
 		usleep(s_philo->s_data->time_to_eat * 1000);
 		pthread_mutex_unlock(s_philo->fork_right);
 		pthread_mutex_unlock(s_philo->fork_left);
 	}
-		s_philo->s_data->count_meals++;
+		pthread_mutex_lock(&s_philo->s_data->meals_count_mutex);
+		s_philo->s_data->count_meals = s_philo->s_data->count_meals + 1;
+		pthread_mutex_unlock(&s_philo->s_data->meals_count_mutex);	
 }
 
 void	sleeping(t_philo *s_philo)
@@ -53,6 +55,7 @@ void	sleeping(t_philo *s_philo)
 
 void	thinking(t_philo *s_philo)
 {
+	usleep(1000);
 	global_print(get_actual_time(), s_philo, "is thinking");
 }
 
