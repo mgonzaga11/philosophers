@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:18:17 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/03 18:11:04 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:16:56 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,64 +19,64 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-typedef struct s_philo t_philo;
+typedef struct s_philo	t_philo;
 
 typedef struct s_data
 {
-	int	philos;
-	int	time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int times_must_eat;
-	pthread_mutex_t *forks;
-    long start_time;
-    int philo_died;
-    pthread_mutex_t died_mutex;
-    pthread_mutex_t print_mutex;
-    t_philo *all_philos;
+	int				philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				times_must_eat;
+	pthread_mutex_t	*forks;
+	long			start_time;
+	int				philo_died;
+	pthread_mutex_t	died_mutex;
+	pthread_mutex_t	print_mutex;
+	t_philo			*all_philos;
 }	t_data;
 
 typedef struct s_philo
 {
-    int	philos;
-    int number_philo;
-    int	time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int times_must_eat;
-    pthread_mutex_t* fork_left;
-    pthread_mutex_t* fork_right; 
-    long last_meal_time;  
-    pthread_t thread;
-    t_data *s_data;
-    long start_time;
-    int count_meals;
-    pthread_mutex_t last_meal_mutex;
-    pthread_mutex_t meals_count_mutex;
+	int					philos;
+	int					number_philo;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					times_must_eat;
+	pthread_mutex_t		*fork_left;
+	pthread_mutex_t		*fork_right;
+	long				last_meal_time;
+	pthread_t			thread;
+	t_data				*s_data;
+	long				start_time;
+	_Atomic int			count_meals;
+	pthread_mutex_t		last_meal_mutex;
 }t_philo;
 
-int philo_isalpha(int c);
-int check_arguments_number(int argc);
-int check_numeric_arguments(char **argv);
-int valid_imputs(char **argv, int argc);
-int max_philo(char	**argv);
-int min_time_die(char **argv);
-t_philo *init_philo(t_data *s_data);
-pthread_mutex_t *init_mutex(t_data s_data);
-t_data  convert_inputs(char **argv, int argc);
-void    *dinner(void *p_param);
-void    init_dinner(t_data s_data, t_philo *s_philo);
-int	    ph_atoi(const char *str);
-long    get_actual_time(void);
-void     philo_eat(t_philo *s_philo);
-void	sleeping(t_philo *s_philo);
-void	thinking(t_philo *s_philo);
-void    global_print(long time, t_philo *s_philo, char *action);
-int     check_philo_death(t_philo *s_philo);
-void    finish_dinner(t_philo *s_philo, t_data *s_data, int total);
-int		check(t_data *s_data);
-void	unic_philo(t_philo *s_philo);
-int zero_philo(char **argv);
-int	everyone_is_full(t_philo *s_philo);
+int				philo_isalpha(int c);
+int				check_arguments_number(int argc);
+int				check_numeric_arguments(char **argv);
+int				valid_imputs(char **argv, int argc);
+int				max_philo(char	**argv);
+int				min_time_die(char **argv);
+t_philo			*init_philo(t_data *s_data);
+pthread_mutex_t	*init_mutex(t_data s_data);
+t_data			convert_inputs(char **argv, int argc);
+void			*dinner(void *p_param);
+void			init_dinner(t_data s_data, t_philo *s_philo);
+int				ph_atoi(const char *str);
+long			get_actual_time(void);
+void			philo_eat(t_philo *s_philo);
+void			sleeping(t_philo *s_philo);
+void			thinking(t_philo *s_philo);
+void			global_print(long time, t_philo *s_philo, char *action);
+int				check_philo_death(t_philo *s_philo);
+void			finish_dinner(t_philo *s_philo, t_data *s_data, int total);
+int				check(t_data *s_data);
+void			unic_philo(t_philo *s_philo);
+int				zero_philo(char **argv);
+int				everyone_is_full(t_philo *s_philo);
+void			last_meal(t_philo *s_philo);
 
 #endif

@@ -6,41 +6,11 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 15:34:47 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/03 16:10:21 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:25:11 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
 #include "philo.h"
-
-
-int	ph_atoi(const char *str)
-{
-	int	sign;
-	int	result;
-	int	i;
-
-	sign = 1;
-	result = 0;
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-		{
-			sign = sign * -1;
-		}
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
-	return (sign * result);
-}
 
 int	main(int argc, char **argv)
 {
@@ -55,7 +25,7 @@ int	main(int argc, char **argv)
 		s_data.all_philos = s_philo;
 		if (s_philo != NULL)
 		{
-			if(s_data.philos > 1)
+			if (s_data.philos > 1)
 				init_dinner(s_data, s_philo);
 			else
 				unic_philo(s_philo);

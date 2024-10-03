@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:35:22 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/03 16:31:48 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/03 20:07:51 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	unic_philo(t_philo *s_philo)
 {
 	global_print(get_actual_time(), s_philo, "has taken a fork");
-	usleep(s_philo->time_to_die * 1000);
+	usleep((s_philo->time_to_die + 1) * 1000);
 	global_print(get_actual_time(), s_philo, "died");
 }
 
 void	init_dinner(t_data s_data, t_philo *s_philo)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < s_data.philos)
 	{
@@ -30,37 +30,37 @@ void	init_dinner(t_data s_data, t_philo *s_philo)
 		i++;
 	}
 	i = 0;
-	while(!check_philo_death(&s_philo[i]) && !everyone_is_full(s_data.all_philos))
-	{
+	while (!check_philo_death(&s_philo[i])
+		&& !everyone_is_full(s_data.all_philos))
 		i = (i + 1) % s_data.philos;
-	}
 	i = 0;
 	while (i < s_data.philos)
 	{
 		pthread_join(s_philo[i].thread, NULL);
 		i++;
 	}
-	return;
+	return ;
 }
 
 void	*dinner(void *p_param)
 {
 	t_philo	*s_philo;
-	int	i;
-	int a;
+	int		i;
+	int		a;
 
 	a = 0;
 	i = 0;
 	s_philo = (t_philo *)p_param;
-
+	if (s_philo->s_data->times_must_eat == 0)
+		return (NULL);
 	while (!check(s_philo->s_data))
 	{
 		philo_eat(s_philo);
-		if(check(s_philo->s_data) == 1)
-			break;	
+		if (check(s_philo->s_data) == 1)
+			break ;
 		sleeping(s_philo);
-		if(check(s_philo->s_data) == 1)
-			break;
+		if (check(s_philo->s_data) == 1)
+			break ;
 		thinking(s_philo);
 	}
 	return (NULL);
