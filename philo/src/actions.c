@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 13:59:08 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/02 17:28:29 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:10:45 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	philo_eat(t_philo *s_philo)
 		pthread_mutex_unlock(s_philo->fork_right);
 		pthread_mutex_unlock(s_philo->fork_left);
 	}
-		pthread_mutex_lock(&s_philo->s_data->meals_count_mutex);
-		s_philo->s_data->count_meals = s_philo->s_data->count_meals + 1;
-		pthread_mutex_unlock(&s_philo->s_data->meals_count_mutex);	
+		pthread_mutex_lock(&s_philo->meals_count_mutex);
+		s_philo->count_meals++;
+		pthread_mutex_unlock(&s_philo->meals_count_mutex);	
 }
 
 void	sleeping(t_philo *s_philo)

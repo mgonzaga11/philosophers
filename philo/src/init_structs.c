@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:50:29 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/01 20:15:39 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:11:45 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_data	convert_inputs(char **argv, int argc)
 	s_data.philo_died = 0;
 	pthread_mutex_init(&s_data.died_mutex, NULL);
 	pthread_mutex_init(&s_data.print_mutex, NULL);
-	pthread_mutex_init(&s_data.meals_count_mutex, NULL);
-		s_data.count_meals = 0;
 	return(s_data);
 }
 
@@ -59,6 +57,8 @@ t_philo  *init_philo(t_data *s_data)
 		s_philo[count].times_must_eat = s_data->times_must_eat;
 		s_philo[count].start_time = s_data->start_time;
 		pthread_mutex_init(&s_philo[count].last_meal_mutex, NULL);
+		pthread_mutex_init(&s_philo[count].meals_count_mutex, NULL);
+		s_philo[count].count_meals = 0;
 		count++;
 	}
 	return(s_philo);

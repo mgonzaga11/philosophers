@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:35:22 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/02 17:34:22 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:31:48 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_dinner(t_data s_data, t_philo *s_philo)
 		i++;
 	}
 	i = 0;
-	while(!check_philo_death(&s_philo[i]))
+	while(!check_philo_death(&s_philo[i]) && !everyone_is_full(s_data.all_philos))
 	{
 		i = (i + 1) % s_data.philos;
 	}

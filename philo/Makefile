@@ -6,14 +6,14 @@
 #    By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 16:51:06 by mgonzaga          #+#    #+#              #
-#    Updated: 2024/10/01 14:15:37 by mgonzaga         ###   ########.fr        #
+#    Updated: 2024/10/03 18:17:27 by mgonzaga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-FLAGS = -pthread -g -Wall -Wextra -Werror
+FLAGS = -pthread -g -Wall -Wextra -Werror 
 RM = rm -f
 
 

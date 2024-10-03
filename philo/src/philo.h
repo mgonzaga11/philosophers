@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:18:17 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/02 16:42:42 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:11:04 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+typedef struct s_philo t_philo;
+
 typedef struct s_data
 {
 	int	philos;
@@ -29,10 +31,9 @@ typedef struct s_data
 	pthread_mutex_t *forks;
     long start_time;
     int philo_died;
-    int count_meals;
-    pthread_mutex_t meals_count_mutex;
     pthread_mutex_t died_mutex;
     pthread_mutex_t print_mutex;
+    t_philo *all_philos;
 }	t_data;
 
 typedef struct s_philo
@@ -49,7 +50,9 @@ typedef struct s_philo
     pthread_t thread;
     t_data *s_data;
     long start_time;
+    int count_meals;
     pthread_mutex_t last_meal_mutex;
+    pthread_mutex_t meals_count_mutex;
 }t_philo;
 
 int philo_isalpha(int c);
@@ -74,5 +77,6 @@ void    finish_dinner(t_philo *s_philo, t_data *s_data, int total);
 int		check(t_data *s_data);
 void	unic_philo(t_philo *s_philo);
 int zero_philo(char **argv);
+int	everyone_is_full(t_philo *s_philo);
 
 #endif

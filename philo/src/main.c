@@ -6,7 +6,7 @@
 /*   By: mgonzaga <mgonzaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 15:34:47 by mgonzaga          #+#    #+#             */
-/*   Updated: 2024/10/01 16:36:14 by mgonzaga         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:10:21 by mgonzaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 		s_data = convert_inputs(argv, argc);
 		s_data.start_time = get_actual_time();
 		s_philo = init_philo(&s_data);
+		s_data.all_philos = s_philo;
 		if (s_philo != NULL)
 		{
 			if(s_data.philos > 1)
